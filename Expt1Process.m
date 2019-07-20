@@ -1,10 +1,10 @@
 % Analysis for Expt 1;
 
 %filepath = 'C:\Users\deand\Documents\Creative processes\ELAN lab\Projects\Funded projects\2018 Royal Society Open Science\Scripts\ET processing scripts\')
-filepath = 'C:\Users\am919155\Documents\InfantBilingualism';
+filepath = '/home/dan/Projects/InfantBilingualism';
 
 cd(filepath)
-addpath('Results\')
+addpath('Results')
 outputName = sprintf('Expt1Output_%s.csv', datestr(datetime, 30));
 
 header = {'Participant ID', 'Counter Balance', 'Block', 'Trial', 'Look away',...
@@ -15,8 +15,7 @@ headerStr = strjoin(header, ',');
 fid = fopen(outputName,'w');
 fprintf(fid, headerStr);
 
-files = dir('Results/eventBuffer*.mat');
-
+files = dir(fullfile('Results', 'eventBuffer*.mat'));
 
 for fileName = {files.name}
     

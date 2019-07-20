@@ -2,11 +2,11 @@
 %filepath = 'C:\Users\Dean\Documents\RESEARCH\RSOS\Processing scripts\';
 %filepath = 'C:\Users\deand\Documents\Creative processes\ELAN lab\Projects\Funded projects\2018 Royal Society Open Science\Scripts\ET processing scripts\'
 
-filepath = 'C:\Users\am919155\Documents\InfantBilingualism';
+filepath = '/home/dan/Projects/InfantBilingualism';
 
 cd(filepath)
 
-addpath('Results\')
+addpath('Results')
 outputName = sprintf('Expt4Output_%s.csv', datestr(datetime, 30));
 
 header = {'Participant ID', 'Trial', 'Switches', 'Left Look time', 'Right Look time\n'};
@@ -15,7 +15,7 @@ headerStr = strjoin(header, ',');
 fid = fopen(outputName,'w');
 fprintf(fid, headerStr);
 
-files = dir('Results\eventBuffer*.mat');
+files = dir(fullfile('Results', 'eventBuffer*.mat'));
 
 for fileName = {files.name}
     
