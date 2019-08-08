@@ -3,6 +3,11 @@
 %filepath = 'C:\Users\deand\Documents\Creative processes\ELAN lab\Projects\Funded projects\2018 Royal Society Open Science\Scripts\ET processing scripts\')
 filepath = '/home/dan/Projects/InfantBilingualism';
 
+% These variables define the start and end triggers for the epoch analysed
+% (See MarkerInfo doc for details of markers used)
+StartMarker = 'stim3Onset';
+EndMarker = 'rewardOffset';
+
 cd(filepath)
 addpath('Results')
 outputName = sprintf('Expt1Output_%s.csv', datestr(datetime, 30));
@@ -38,8 +43,8 @@ for fileName = {files.name}
     
     Expt1 = ~cellfun('isempty', strfind(temp.allEvents(:,3), 'Experiment1'));
     %anticip = ~cellfun('isempty', strfind(temp.allEvents(:,3), 'anticipOnset'));
-    trialStart = ~cellfun('isempty', strfind(temp.allEvents(:,3), 'stim3Onset'));
-    trialEnd = ~cellfun('isempty', strfind(temp.allEvents(:,3), 'rewardOffset'));
+    trialStart = ~cellfun('isempty', strfind(temp.allEvents(:,3), StartMarker));
+    trialEnd = ~cellfun('isempty', strfind(temp.allEvents(:,3), EndMarker));
     
     %temp.specificEvents = temp.allEvents(Expt1 & anticip,:);
     

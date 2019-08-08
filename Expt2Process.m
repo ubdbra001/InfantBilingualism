@@ -3,6 +3,11 @@
 
 filepath = '/home/dan/Projects/InfantBilingualism';
 
+% These variables define the start and end triggers for the epoch analysed
+% (See MarkerInfo doc for details of markers used)
+StartMarker = 'StimOnset';
+EndMarker = 'rewardOffset';
+
 cd(filepath)
 
 addpath('Results')
@@ -39,8 +44,8 @@ for fileName = {files.name}
     
     ExptN = ~cellfun('isempty', strfind(temp.allEvents(:,3), 'Experiment3'));
     %anticip = ~cellfun('isempty', strfind(temp.allEvents(:,3), 'anticipOnset'));
-    trialStart = ~cellfun('isempty', strfind(temp.allEvents(:,3), 'StimOnset'));
-    trialEnd = ~cellfun('isempty', strfind(temp.allEvents(:,3), 'rewardOffset'));
+    trialStart = ~cellfun('isempty', strfind(temp.allEvents(:,3), StartMarker));
+    trialEnd = ~cellfun('isempty', strfind(temp.allEvents(:,3), EndMarker));
     
     %temp.specificEvents = temp.allEvents(Expt1 & anticip,:);
     
