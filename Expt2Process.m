@@ -6,7 +6,9 @@ filepath = '/home/dan/Projects/InfantBilingualism';
 % These variables define the start and end triggers for the epoch analysed
 % (See MarkerInfo doc for details of markers used)
 StartMarker = 'StimOnset';
+StartOffset = 0; % offset from start marker in ms
 EndMarker = 'rewardOffset';
+EndOffset = 0; % offset from end marker in ms
 
 cd(filepath)
 
@@ -56,9 +58,9 @@ for fileName = {files.name}
         
         eventDetails = strsplit(temp.eventStarts{event_n,3},'_');
         
-        windowStart = temp.eventStarts{event_n,2};
-        windowEnd   = temp.eventEnds{event_n,2};
-        
+        windowStart = temp.eventStarts{event_n,2}+(StartOffset*1000);
+        windowEnd   = temp.eventEnds{event_n,2}+(EndOffset*1000);
+                
         winStartIdx = find(temp.allData > windowStart, 1);
         winEndIdx = find(temp.allData(:,1) < windowEnd, 1, 'last');
         
